@@ -1,5 +1,6 @@
 package com.example.decoupledfragmentsubmission;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameListFragment extends Fragment {
+
+    // Declares the interface when using the call back to the activity class.
+    OnItemSelectedListener callBack;
+
+    // Interface for communication between the activity and fragment.
+    public interface OnItemSelectedListener {
+
+        public void onGameSelected(Game game);
+    }
 
     // Holds the recycler view and adapter objects for use within methods.
     private RecyclerView gameRecyclerView;
@@ -106,6 +116,8 @@ public class GameListFragment extends Fragment {
                     gameDetails.getTitle() + " clicked",
                     Toast.LENGTH_SHORT)
                     .show();
+            // Notify the parent activity of selected item and pass the items game details.
+            callBack.onGameSelected(gameDetails);
 
         }
 
@@ -151,4 +163,19 @@ public class GameListFragment extends Fragment {
 
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // Ensures the callback interface has been implemented by the activity.
+        try {
+            callBack = (OnItemSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnTodoSelectedListener");
+        }
+    }
+
 }
+
+

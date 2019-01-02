@@ -1,9 +1,11 @@
 package com.example.decoupledfragmentsubmission;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class Game {
+// Implements the serializable interface so the object can be passed in a bundle.
+public class Game implements Serializable {
 
     // Private property variables to hold Game object data.
     private UUID gameID;
