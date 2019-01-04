@@ -28,6 +28,8 @@ public class GameListFragment extends Fragment {
     private RecyclerView gameRecyclerView;
     ListAdapter listAdapter;
 
+    private RecyclerView.LayoutManager layoutManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -46,7 +48,8 @@ public class GameListFragment extends Fragment {
 
         // Initialise recycler view element from XML using ID and provide layout manager for child views.
         gameRecyclerView = view.findViewById(R.id.game_recycler_view);
-        gameRecyclerView.setLayoutManager( new LinearLayoutManager(getActivity()) );
+        layoutManager = new LinearLayoutManager(getActivity());
+        gameRecyclerView.setLayoutManager(layoutManager);
 
         // Updates the view with current array of games.
         updateUI();
@@ -71,14 +74,12 @@ public class GameListFragment extends Fragment {
         GameList gameListModel = GameList.get(getContext());
         gameList = gameListModel.getGames();
 
-        // If list adapter is not null then initialise adapter using list of games and set the adapter in recycler view.
-        if (listAdapter == null) {
+        // Set the adapter in recycler view.
             listAdapter = new ListAdapter(gameList);
             gameRecyclerView.setAdapter(listAdapter);
-        } else {
+
             // Informs observers data is no longer valid.
             listAdapter.notifyDataSetChanged();
-        }
 
     }
 

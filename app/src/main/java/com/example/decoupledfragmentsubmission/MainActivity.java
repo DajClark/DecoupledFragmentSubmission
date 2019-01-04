@@ -14,10 +14,10 @@ implements GameListFragment.OnItemSelectedListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Create a new Fragment to be placed in the activity layout
+        // Create a new Fragment to be placed in the activity layout.
         GameListFragment firstFragment = new GameListFragment();
 
-        // Add the fragment to the 'fragment_container' FrameLayout
+        // Add the fragment to the 'fragment_container' FrameLayout.
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, firstFragment).commit();
 
@@ -35,7 +35,7 @@ implements GameListFragment.OnItemSelectedListener {
 
             // Create bundle and pass game as serializable.
             Bundle args = new Bundle();
-            args.putSerializable(EXTRA_GAME,game);
+            args.putSerializable(EXTRA_GAME,GameList.get(this).getGame(game.getGameID()));
 
             // Set fragment arguments using bundle.
             newFragment.setArguments(args);
