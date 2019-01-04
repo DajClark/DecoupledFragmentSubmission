@@ -16,6 +16,7 @@ public class GameEditFragment extends Fragment {
     // Key to pass game type using bundle.
     final static String EXTRA_GAME = "game";
 
+    // Stores game object for reading and updating within the onCreateView call.
     Game game;
 
     @Override
@@ -24,6 +25,7 @@ public class GameEditFragment extends Fragment {
         // Calls onCreate methods from super class.
         super.onCreate(savedInstanceState);
 
+        // Gets the arguments passed by the calling Activity.
         Bundle args = getArguments();
         if (args != null) {
             game = (Game) args.getSerializable(EXTRA_GAME);
@@ -52,12 +54,15 @@ public class GameEditFragment extends Fragment {
         gamePlatform.setText(game.getPlatform());
         gameDescription.setText(game.getDescription());
 
+        // Checks if the game is complete and sets button text accordingly.
         if (game.isComplete()) {
             dateButton.setText(game.getDateComplete().toString());
         }
 
+        // Sets the checkbox on the games completion status.
         isComplete.setChecked(game.isComplete());
 
+        // Listens for text changes in the edit boxes and sets the game's properties.
         gameTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -114,7 +119,7 @@ public class GameEditFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                // Declares new date and updates view based on checkbox status.
+                // Declares new date and updates view and properties based on checkbox status.
                 if (isChecked) {
                     Date date = new Date();
                     dateButton.setText(date.toString());

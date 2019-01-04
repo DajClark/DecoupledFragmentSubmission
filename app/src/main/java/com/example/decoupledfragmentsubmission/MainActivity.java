@@ -33,7 +33,8 @@ implements GameListFragment.OnItemSelectedListener {
 
             GameEditFragment newFragment = new GameEditFragment();
 
-            // Create bundle and pass game as serializable.
+            /* Create bundle and passes reference to the game object as serializable
+               from the list in the model.*/
             Bundle args = new Bundle();
             args.putSerializable(EXTRA_GAME,GameList.get(this).getGame(game.getGameID()));
 
