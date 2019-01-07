@@ -52,22 +52,4 @@ public class GameList {
         return gameList;
     }
 
-    // Adds new game to the list.
-    public void addGame(Game game){
-        gameList.add(game);
-    }
-
-    // Updates a single list item with new game details.
-    public void updateGame(Game newGame) {
-
-        for (Game game : gameList) {
-            if(game.getGameID().equals(game.getGameID())){
-                game.setTitle(newGame.getTitle());
-                game.setPlatform(newGame.getPlatform());
-                game.setDescription(newGame.getDescription());
-                game.setDateComplete(newGame.getDateComplete());
-                game.setComplete(newGame.isComplete());
-            }
-        }
-    }
 }
